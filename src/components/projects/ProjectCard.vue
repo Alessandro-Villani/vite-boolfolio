@@ -1,0 +1,64 @@
+<script>
+export default {
+    name: 'ProjectCard',
+    props: {
+        project: Object,
+    },
+    computed: {
+        publicationDate() {
+            const fullDate = new Date(this.project.updated_at);
+            const day = fullDate.getDate() < 10 ? '0' + fullDate.getDate() : fullDate.getDate();
+            const month = fullDate.getMonth() < 9 ? '0' + (fullDate.getMonth() + 1) : fullDate.getMonth() + s1;
+            const year = fullDate.getFullYear();
+            const hour = fullDate.getHours() < 10 ? '0' + fullDate.getHours() : fullDate.getHours();
+            const minutes = fullDate.getMinutes() < 10 ? '0' + fullDate.getMinutes() : fullDate.getMinutes();
+            const date = `${day}/${month}/${year} - ${hour}:${minutes}`;
+            return date;
+        }
+    }
+}
+</script>
+
+<template>
+    <li class="card bg-secondary p-5 mb-5">
+        <div class="card-header p-0 pb-3 mb-3">
+            <time>Pubblicato il: {{ publicationDate }}</time>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <img class="img-fluid" :src="project.image_url" :alt="project.name">
+            </div>
+            <div class="col-9">
+                <div class="title d-flex align-items-center">
+                    <h3 class="me-2">{{ project.name }}</h3>
+                    <div v-if="project.type" class="badge rounded-pill" :style="`background-color: ${project.type.color}`">
+                        {{
+                            project.type.label }}</div>
+                </div>
+                <p>{{ project.description }}</p>
+            </div>
+        </div>
+        <div class="card-footer pt-3">
+            <div v-if="project.technologies.length" class="technologies d-flex justify-content-end align-items-center">
+                <p class="mb-0 me-2">Tecnologie:</p>
+                <div v-for="tech in project.technologies" class="technology me-2" :style="`color: ${tech.color}`"
+                    v-html="tech.icon"></div>
+            </div>
+        </div>
+    </li>
+</template>
+
+<style scoped lang="scss">
+.card-footer,
+.card-header {
+    background-color: transparent;
+}
+
+.technologies {
+    p {
+        font-size: 18px;
+    }
+
+    font-size: 25px;
+}
+</style>

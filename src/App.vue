@@ -1,11 +1,12 @@
 <script>
 import axios from 'axios';
 import AppHeader from './components/AppHeader.vue';
+import ProjectsList from './components/projects/ProjectsList.vue';
 const apiBaseUrl = 'http://127.0.0.1:8000/api/';
 
 export default {
   name: "Boolfolio",
-  components: { AppHeader },
+  components: { AppHeader, ProjectsList },
   data() {
     return {
       projects: [],
@@ -30,6 +31,9 @@ export default {
 
 <template>
   <AppHeader />
+  <main class="app-main">
+    <ProjectsList :projects="projects" />
+  </main>
 </template>
 
 <style lang="scss">
