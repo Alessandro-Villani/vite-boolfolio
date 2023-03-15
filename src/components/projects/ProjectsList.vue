@@ -6,7 +6,8 @@ export default {
     name: "ProjectsList",
     props: {
         projects: Array,
-        links: Array
+        links: Array,
+        pages: Number
     },
     components: { ProjectCard, AppPagination }
 }
@@ -14,10 +15,11 @@ export default {
 
 <template>
     <section id="projects-list" class="container my-5">
-        <ul>
+        <ul v-if="projects.length">
             <ProjectCard v-for="project in projects" :project="project" />
         </ul>
-        <footer>
+        <h2 v-else class="text-light py-5 text-center">Non ci sono post</h2>
+        <footer v-if="pages > 1">
             <AppPagination :links="links" @change-page="$emit('change-page', $event)" />
         </footer>
     </section>
