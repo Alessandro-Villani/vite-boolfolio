@@ -9,13 +9,18 @@ export default {
   components: { AppHeader, ProjectsList },
   data() {
     return {
-      projects: [],
+      projects: {
+        data: [],
+        links: [],
+      },
     }
   },
   methods: {
-    fetchProjects() {
-      axios.get(apiBaseUrl + 'projects').then(res => {
-        this.projects = res.data;
+    fetchProjects(url = null) {
+      if (!url) url = apiBaseUrl + 'projects'
+      axios.get(url).then(res => {
+        this.projects.data = res.data.data;
+        this.projects.links = res.data.links;
       }).catch(e => {
         console.error(e);
       }).then(() => {
@@ -32,7 +37,7 @@ export default {
 <template>
   <AppHeader />
   <main class="app-main">
-    <ProjectsList :projects="projects" />
+    <ProjectsList :projects="projects.data" :links="projects.links" @change-page="fetchProjects" />
   </main>
 </template>
 

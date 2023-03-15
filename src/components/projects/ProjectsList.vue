@@ -1,12 +1,14 @@
 <script>
+import AppPagination from '../AppPagination.vue';
 import ProjectCard from './ProjectCard.vue';
 
 export default {
     name: "ProjectsList",
     props: {
         projects: Array,
+        links: Array
     },
-    components: { ProjectCard }
+    components: { ProjectCard, AppPagination }
 }
 </script>
 
@@ -15,6 +17,9 @@ export default {
         <ul>
             <ProjectCard v-for="project in projects" :project="project" />
         </ul>
+        <footer>
+            <AppPagination :links="links" @change-page="$emit('change-page', $event)" />
+        </footer>
     </section>
 </template>
 
