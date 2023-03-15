@@ -38,7 +38,7 @@ export default {
                 <p>{{ project.description }}</p>
             </div>
         </div>
-        <div class="card-footer pt-3">
+        <div class="card-footer mt-3 pt-3">
             <div v-if="project.technologies.length" class="technologies d-flex justify-content-end align-items-center">
                 <p class="mb-0 me-2">Tecnologie:</p>
                 <div v-for="tech in project.technologies" class="technology me-2" :style="`color: ${tech.color}`"

@@ -15,7 +15,13 @@ export default {
         links: [],
         pages: null,
       },
-      isLoading: false
+      isLoading: false,
+      error: {
+        status: false,
+        type: 'Error',
+        class: 'alert-danger',
+        message: '',
+      }
     }
   },
   methods: {
@@ -27,7 +33,9 @@ export default {
         this.projects.links = res.data.links;
         this.projects.pages = res.data.last_page;
       }).catch(e => {
-        console.error(e);
+        this.error.status = true;
+        this.error.message = e;
+
       }).then(() => {
         this.isLoading = false;
       })
@@ -42,6 +50,8 @@ export default {
 <template>
   <AppHeader />
   <main class="app-main">
+    <AppAlert v-if="error.status" class="my-5" :alertClass="error.class" :alertType="error.type"
+      :alertMessage="error.message" @alert-close="error.status = false" />
     <AppLoader v-if="isLoading" />
     <ProjectsList v-else :projects="projects.data" :links="projects.links" :pages="projects.pages"
       @change-page="fetchProjects" />

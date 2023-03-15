@@ -15,7 +15,7 @@ export default {
 
 <template>
     <section id="projects-list" class="container my-5">
-        <ul v-if="projects.length">
+        <ul class="px-0" v-if="projects.length">
             <ProjectCard v-for="project in projects" :project="project" />
         </ul>
         <h2 v-else class="text-light py-5 text-center">Non ci sono post</h2>
