@@ -40,7 +40,7 @@ export default {
     <main>
         <div class="container my-5">
             <AppLoader v-if="isLoading" />
-            <ProjectCard v-else :project="project" />
+            <ProjectCard v-else :project="project" :isDetail="true" />
         </div>
     </main>
 </template>
