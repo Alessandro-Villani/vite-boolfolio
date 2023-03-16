@@ -20,7 +20,7 @@ export default {
 </script>
 
 <template>
-    <li class="card bg-secondary p-5 mb-5">
+    <router-link :to="{ name: 'ProjectDetails', params: { id: project.id } }" class="card bg-secondary p-5 mb-5">
         <div class="card-header p-0 pb-3 mb-3">
             <time>Pubblicato il: {{ publicationDate }}</time>
         </div>
@@ -45,10 +45,15 @@ export default {
                     v-html="tech.icon"></div>
             </div>
         </div>
-    </li>
+    </router-link>
 </template>
 
 <style scoped lang="scss">
+.card {
+    color: white;
+    text-decoration: none;
+}
+
 .card-footer,
 .card-header {
     background-color: transparent;
