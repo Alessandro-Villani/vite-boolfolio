@@ -24,7 +24,8 @@ export default {
 </script>
 
 <template>
-    <router-link :to="{ name: 'ProjectDetails', params: { id: project.id } }" class="card bg-secondary p-5 mb-5">
+    <router-link :to="{ name: 'ProjectDetails', params: { id: project.id } }" class="card bg-secondary p-5 mb-5"
+        :class="{ 'card-link': !isDetail }">
         <div class="card-header p-0 pb-3 mb-3">
             <time>Pubblicato il: {{ publicationDate }}</time>
         </div>
@@ -57,6 +58,12 @@ export default {
 .card {
     color: white;
     text-decoration: none;
+    transition: all 0.5s;
+
+    &.card-link:hover {
+        scale: 1.05;
+        box-shadow: 0 0 10px red;
+    }
 }
 
 .card-footer,
