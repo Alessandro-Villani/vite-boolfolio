@@ -23,7 +23,7 @@ export default {
             axios.get(apiBaseUrl + this.postId).then(res => {
                 this.project = res.data;
             }).catch(e => {
-                console.error(e);
+                this.$router.push({ name: 'NotFound' });
             }).then(() => {
                 this.isLoading = false;
             });
